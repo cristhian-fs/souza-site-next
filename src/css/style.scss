@@ -1,0 +1,615 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./menu.scss";
+@import "./loader";
+@import "./animations.scss";
+@import "../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  &::-webkit-scrollbar {
+    padding-right: 4px;
+    width: 5px;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #040305; /* color of the tracking area */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #505050;
+    transition: 500ms all ease;
+
+    &:hover {
+      background: #5200ff;
+    }
+  }
+
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseIntl-Regular.woff2") format("woff2"),
+    url("../fonts/SuisseIntl-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseIntl-Medium.woff2") format("woff2"),
+    url("../fonts/SuisseIntl-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseIntl-Book.woff2") format("woff2"),
+    url("../fonts/SuisseIntl-Book.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Almarai";
+  src: url("../fonts/Almarai-Regular.woff2") format("woff2"),
+    url("../fonts/Almarai-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseScreen-Bold.woff2") format("woff2"),
+    url("../fonts/SuisseScreen-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background: #040305;
+  color: #ffffff;
+}
+
+// LENIS SETTINGS
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+.almaraiFont {
+  font-family: "Almarai";
+}
+
+.gradient-button {
+  background: linear-gradient(
+    99deg,
+    #0a0816 -13.17%,
+    #dedcff 35.6%,
+    #333357 118.71%
+  );
+}
+.heroVideo {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.text-with-right-aligned-first-line::first-line {
+  text-align: right;
+}
+
+.extraContent {
+  overflow: hidden;
+  transition: 500ms all ease;
+  max-height: 0px;
+}
+.extraContent.active {
+  max-height: 1000px;
+}
+
+.toggleContent {
+  //border-bottom: 1px solid #505050;
+  transition: 500ms all ease;
+  overflow: hidden;
+  position: relative;
+
+  .contentAsideBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transition: 500ms all ease;
+    background-color: #505050;
+    transform-origin: 0% 0%;
+  }
+
+  .toggleServiceName {
+    color: #505050;
+  }
+
+  .arrowToggle {
+    transition: 500ms all ease;
+  }
+  .arrowToggle path {
+    fill: #505050;
+    transition: 500ms all ease;
+  }
+  .gradientToggleIcon {
+    filter: saturate(0);
+  }
+}
+
+.toggleContent.active {
+  // border-bottom: 1px solid #E1E1E1;
+  position: relative;
+  &::after {
+    background-color: #e1e1e1;
+  }
+  .contentAsideBar {
+    background-color: #e1e1e1;
+  }
+
+  .toggleServiceName {
+    background: var(
+      --Souza-Gradiente,
+      linear-gradient(
+        99deg,
+        #0a0816 -13.17%,
+        #dedcff 35.6%,
+        #dedcff 35.6%,
+        #333357 118.71%
+      )
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .arrowToggle {
+    transform: rotate(45deg);
+  }
+  .arrowToggle path {
+    fill: #ffffff;
+  }
+  .gradientToggleIcon {
+    filter: saturate(1);
+  }
+}
+.toggleButton {
+  cursor: pointer;
+}
+
+.mainCaseThumb {
+  height: 518px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 48px;
+
+  @media (min-width: 768px) {
+    padding-left: 56px;
+    padding-bottom: 56px;
+  }
+
+  .motionInsiderOverlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0) 50%
+    );
+    z-index: 2;
+    @media (min-width: 768px) {
+      background: none;
+    }
+  }
+  .candyLipsOverlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 47.38%, #15000d 100%);
+    z-index: 2;
+  }
+  .mviOverlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0px;
+    background: linear-gradient(
+      180deg,
+      rgba(122, 48, 96, 0) 47.38%,
+      #000000 100%
+    );
+    z-index: 2;
+  }
+}
+.mainCaseSpecs {
+  border-top: 1px solid rgba(243, 243, 242, 0.25);
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+}
+
+.motionInsider {
+  background-color: #191919;
+
+  .heroImg {
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    @media (min-width: 768px) {
+      width: auto;
+      height: auto;
+      object-fit: none;
+      right: -56px;
+      top: -10%;
+    }
+  }
+
+  .redVector {
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    z-index: 3;
+    pointer-events: none;
+    @media (min-width: 768px) {
+      top: 60%;
+      left: 50%;
+    }
+  }
+
+  .lineMotion {
+    position: absolute;
+    top: 80%;
+    left: -20%;
+    z-index: 3;
+    pointer-events: none;
+    @media (min-width: 768px) {
+      left: 0;
+      top: 92%;
+    }
+  }
+  .overlayLogo {
+    width: 60px;
+    pointer-events: none;
+    @media (min-width: 768px) {
+      width: auto;
+    }
+  }
+  .backTextSmallLogo {
+    position: absolute;
+    z-index: 3;
+    opacity: 0.03;
+    top: 70%;
+    left: 50%;
+    pointer-events: none;
+    transform: translate(-50%, 0) scale(0.8);
+    @media (min-width: 768px) {
+      top: 67%;
+      left: 35%;
+      transform: translate(-50%, 0) scale(1);
+    }
+  }
+  .backSmallLogo {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.28;
+    top: 00%;
+    left: 75%;
+    pointer-events: none;
+    transform: translate(-50%, 0) scale(0.8);
+    @media (min-width: 768px) {
+      left: 30%;
+      top: -15%;
+    }
+  }
+  .backSmallLogo2 {
+    display: none;
+    pointer-events: none;
+    @media (min-width: 768px) {
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 25%;
+      left: 13%;
+    }
+  }
+  .elipseOverlay {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    z-index: 3;
+    pointer-events: none;
+    @media (min-width: 768px) {
+      top: 60%;
+      left: 90%;
+    }
+  }
+  .overlayCruzEsq {
+    display: none;
+    pointer-events: none;
+    @media (min-width: 768px) {
+      display: block;
+      position: absolute;
+      left: 0%;
+      top: 70%;
+    }
+  }
+}
+.palmBeach {
+  background-color: #9aa697;
+
+  .palmBeachFoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% 0%;
+
+    @media (min-width: 768px) {
+      object-position: 0% 50%;
+    }
+  }
+
+  .palmBeachSquare {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    background-color: #9aa697;
+
+    @media (min-width: 768px) {
+      width: 35%;
+      height: 100%;
+    }
+  }
+  .palmBeachArrows {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: soft-light;
+
+    @media (min-width: 768px) {
+      top: 50%;
+      left: 75%;
+    }
+  }
+}
+
+// SLIDER SETTINGS
+.swiper {
+  padding-bottom: 56px !important;
+}
+
+.swiper-pagination {
+  top: 95% !important;
+  left: 0% !important;
+  width: auto !important;
+  height: auto !important;
+  display: flex !important;
+  gap: 16px !important;
+
+  @media (min-width: 768px) {
+  }
+}
+
+.swiper-pagination-bullet {
+  height: auto !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: linear-gradient(
+    99deg,
+    #0a0816 -13.17%,
+    #dedcff 35.6%,
+    #dedcff 35.6%,
+    #333357 118.71%
+  ) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  height: auto !important;
+}
+
+.imagemBio {
+  position: absolute;
+  top: 25%;
+  right: 24px;
+  width: 40%;
+
+  @media (min-width: 768px) {
+    right: 0;
+    width: 464px;
+    top: 30%;
+  }
+}
+
+// FORMS SETTINGS
+
+input {
+  border: none;
+  background: transparent;
+  padding: 8px;
+  border-bottom: 1px solid #a2a2a2;
+  color: #a2a2a2;
+
+  &:focus {
+    border: none;
+    border-bottom: 1px solid #a2a2a2;
+    outline: none;
+  }
+  &:active {
+    border: none;
+    border-bottom: 1px solid #a2a2a2;
+    outline: none;
+  }
+  &:focus-visible {
+    border: none;
+    border-bottom: 1px solid #a2a2a2;
+    outline: none;
+  }
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+/* Estiliza a etiqueta para simular um botão */
+label.button {
+  display: inline-flex;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #a2a2a2;
+  border: 1px solid #a2a2a2;
+  border-radius: 99px;
+  cursor: pointer;
+}
+
+/* Estiliza a etiqueta quando o botão de rádio está selecionado */
+input[type="radio"]:checked + label.button {
+  background: linear-gradient(
+    99deg,
+    #0a0816 -13.17%,
+    #dedcff 35.6%,
+    #dedcff 35.6%,
+    #333357 118.71%
+  );
+  border-color: transparent;
+  color: #08060c;
+}
+
+// ANIMATIONS
+.secondVideo {
+  position: absolute;
+  top: 10%;
+  left: 24px;
+  z-index: 0;
+}
+
+// PRELOAD IMGS
+.blurred-img img {
+  opacity: 0;
+  object-position: center center;
+}
+
+.blurred-img {
+  filter: blur(10px);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.blurred-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: pulse 2.5s infinite;
+  background-color: white;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.blurred-img.loaded::before {
+  animation: none;
+  content: none;
+}
+
+.blurred-img img {
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blurred-img.loaded {
+  background-image: none !important;
+  filter: blur(0px);
+}
+
+.blurred-img.loaded img {
+  opacity: 1;
+}
+
+#services,
+#cases,
+#about {
+  scroll-margin-top: 150px;
+}
+.errorMsg {
+  display: none;
+}
+.sucessMsg {
+  display: none;
+}
+.sucessMsg.isSucess {
+  display: block;
+}
+
+.errorMsg.isError {
+  display: block;
+}

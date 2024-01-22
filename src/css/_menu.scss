@@ -1,0 +1,23 @@
+.headerOptions{
+  background: #fff;
+  width: 70%;
+  position: fixed;
+  top: 96px;
+  right: 24px;
+  transition: 700ms all ease;
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.headerOptions.is-active{
+  opacity: 1;
+  pointer-events: all;
+}
+
+.navOptionsDesktop{
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(78,78,78,0.35);
+  background: rgba(0,0,0,0.2);
+}
